@@ -1,0 +1,4 @@
+./node_modules
+./ormconfig.js
+/app/node_modules
+node_modules/

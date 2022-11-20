@@ -1,0 +1,22 @@
+services:
+  api:
+    build:
+      context: .
+      dockerfile: dockerfile
+    volumes:
+      - ./src:/app/src
+    expose:
+      - 3000
+    ports:
+      - 3000:3000
+    depends_on:
+      - pg
+    command: bash -c 'yarn typeorm migration:run && yarn dev'
+  pg:
+    image: postgres
+    env_file:
+      - .env
+    expose:
+      - 5432
+    ports:
+      - 5432:5432

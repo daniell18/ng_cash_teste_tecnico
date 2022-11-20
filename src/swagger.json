@@ -1,0 +1,317 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Api teste NG_cash",
+    "description": "NG_cash teste tecnico",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3000/",
+      "description": "Development Server"
+    }
+  ],
+  "paths": {
+    "/user/signup": {
+      "post": {
+        "description": "Create user and account.",
+        "tags": ["User"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/User"
+              },
+              "examples": {
+                "create new user": {
+                  "value": {
+                    "username": "admin",
+                    "password": "12345As*"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UsersignUp"
+                },
+                "examples": {
+                  "user": {
+                    "value": {
+                      "msg": "account successfully created ",
+                      "username": "admin"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [{}]
+      }
+    },
+    "/user/signin": {
+      "post": {
+        "description": "Login.",
+        "tags": ["User"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/User"
+              },
+              "examples": {
+                "login": {
+                  "value": {
+                    "username": "swagger",
+                    "password": "12345As*"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UsersignIn"
+                },
+                "examples": {
+                  "token": {
+                    "value": {
+                      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIyMmQzODE0ZS02MTczLTRkYTctODI2My0xMGI5ODljMTU2ZDQiLCJpYXQiOjE2NDkyNzAxMzIsImV4cCI6MTY0OTI4MDkzMn0.4pDOvBXHF-sMUjtA5Srk7iJW9PPS3pIglAlHCp1Xy_o"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [{}]
+      }
+    },
+    "/account/{username}/balance": {
+      "get": {
+        "description": "Get Account Balance",
+        "security": [{ "bearerAuth": [] }],
+        "tags": ["Account"],
+        "parameters": [
+          {
+            "description": "username.",
+            "in": "path",
+            "name": "username",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": { "description": "OK" }
+        }
+      }
+    },
+    "/account/{username}/cashout": {
+      "post": {
+        "description": "Cash-Out",
+        "security": [{ "bearerAuth": [] }],
+        "tags": ["Account"],
+        "parameters": [
+          {
+            "description": "username.",
+            "in": "path",
+            "name": "username",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/cashOut" },
+              "examples": {
+                "cash-Out": {
+                  "value": {
+                    "username": "daniel",
+                    "value": 5
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/cashOutResponse" },
+                "examples": {
+                  "cash-OutResponse": {
+                    "value": {
+                      "data": {
+                        "id": 1,
+                        "value": 50,
+                        "createdAt": "2022-11-20T00:20:02.075Z",
+                        "creditAccount": 1,
+                        "newBalance": 50
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/account/{username}/cashin": {
+      "post": {
+        "description": "Cash-In",
+        "security": [{ "bearerAuth": [] }],
+        "tags": ["Account"],
+        "parameters": [
+          {
+            "description": "username.",
+            "in": "path",
+            "name": "username",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/cashin" },
+              "examples": {
+                "cash-In": {
+                  "value": {
+                    "value": 5
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/cashinResponse" },
+                "examples": {
+                  "cash-InResponse": {
+                    "value": {
+                      "id": 1,
+                      "balance": 105
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/transactions/{username}": {
+      "get": {
+        "description": "Get Transactions",
+        "security": [{ "bearerAuth": [] }],
+        "tags": ["Transactions"],
+        "parameters": [
+          {
+            "description": "username.",
+            "in": "path",
+            "name": "username",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "type can receive credit or debit depending on the transaction that this filter,if not passed, it returns all transactions",
+            "in": "query",
+            "name": "type",
+            "required": false,
+            "schema": { "type": "string" }
+          },
+          {
+            "description": "order can receive ASC or DESC depending on how you want to sort it if not passed by default it will return in the ASC",
+            "in": "query",
+            "name": "order",
+            "required": false,
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    },
+    "schemas": {
+      "User": {
+        "properties": {
+          "username": { "type": "string" },
+          "password": { "type": "string" }
+        }
+      },
+      "UsersignUp": {
+        "properties": {
+          "msg": { "type": "string" },
+          "username": { "type": "string" }
+        }
+      },
+      "UsersignIn": { "properties": { "token": { "type": "string" } } },
+      "cashOut": {
+        "properties": {
+          "username": { "type": "string" },
+          "value": { "type": "number" }
+        }
+      },
+      "cashOutResponse": {
+        "properties": {
+          "data": { "type": "object" },
+          "id": { "type": "string" },
+          "value": { "type": "number" },
+          "createdAt": { "type": "string" },
+          "creditAccount": { "type": "string" },
+          "newBalance": { "type": "number" }
+        }
+      },
+      "cashin": { "properties": { "value": { "type": "number" } } },
+      "cashinResponse": {
+        "properties": {
+          "id": { "type": "array" },
+          "balance": { "type": "number" }
+        }
+      }
+    }
+  }
+}
