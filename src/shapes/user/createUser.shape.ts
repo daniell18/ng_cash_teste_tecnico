@@ -1,16 +1,14 @@
-import { hashSync } from "bcryptjs";
 import * as yup from "yup";
 
 const createUserShape = yup.object().shape({
-  username: yup.string().required(),
+  username: yup.string().min(3).required("Please Enter your username"),
   password: yup
     .string()
-    .required("Please Enter your password")
+    .required()
     .matches(
-      /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/,
-      "Must Contain 8 Characters, One Uppercase, One Lowercase, One Number and One Special Case Character"
-    )
-    .transform((pwd) => hashSync(pwd, 10)),
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/,
+      "Must Contain 8 Characters, One Uppercase, One Lowercase, One Number and one special case Character"
+    ),
 });
 
 export default createUserShape;

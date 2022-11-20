@@ -1,7 +1,8 @@
+import { hashSync } from "bcryptjs";
 import { QueryFailedError } from "typeorm";
-import Accounts from "../../entities/Accounts";
+
 import User from "../../entities/User";
-import { AccountRepository, UserRepository } from "../../repositories";
+import { UserRepository } from "../../repositories";
 import { ErrorHandler } from "../../utils";
 
 interface IDetail extends QueryFailedError {
@@ -10,6 +11,7 @@ interface IDetail extends QueryFailedError {
 
 const createUserService = async (user: User) => {
   try {
+    user.password = hashSync(user.password, 10);
     const { password, ...newUser } = await new UserRepository().save(user);
     return newUser;
   } catch (error) {

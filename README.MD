@@ -25,6 +25,14 @@ Para rodar esse projeto, você vai precisar adicionar as seguintes variáveis de
 - `SECRET_KEY` senha para criação de token de autenticação;
 - `EXPIRES_IN` tempo de expiração do token gerado;
 
+# como rodar a aplicação
+
+Deve se ter o docker instalado,preencher o .env e rodar comando
+
+```
+ docker-compose up --build
+```
+
 # Como usar os Endpoints
 
 As rotas da aplicação podem ser dividas em três categorias básicas:

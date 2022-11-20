@@ -1,10 +1,9 @@
 import { Router } from "express";
-import { createUserController } from "../../controller";
+import { createUserController, loginUserController } from "../../controller";
 import authToken from "../../middlewares/authtoken.middleware";
 import validateShape from "../../middlewares/validateShape.middlewares";
 
 import { createUserShape, loginUserShape } from "../../shapes";
-import loginUserController from "../../controller/user/loginUser.controller";
 
 const userRoutes = Router();
 
