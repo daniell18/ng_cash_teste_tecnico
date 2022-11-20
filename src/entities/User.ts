@@ -12,13 +12,13 @@ export default class User {
   @PrimaryGeneratedColumn()
   readonly id: string;
 
-  @Column()
-  name: string;
+  @Column({ unique: true })
+  username: string;
 
   @Column()
   password: string;
 
   @OneToOne(() => Accounts, { nullable: true })
   @JoinColumn()
-  account: string;
+  account: Accounts;
 }

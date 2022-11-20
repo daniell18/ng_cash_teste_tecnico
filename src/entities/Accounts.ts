@@ -14,7 +14,8 @@ export default class Accounts {
     (transactions) => {
       transactions.debitAccount;
       transactions.creditAccount;
-    }
+    },
+    { nullable: true }
   )
   transactions: Transactions[];
 }

@@ -1,11 +1,6 @@
 FROM node:18.12.1
-
 WORKDIR /app
-
-COPY package.json /app
-
+COPY package*.json ./
 RUN yarn
-
 COPY . .
-
-CMD [ "yarn", "dev" ]
+ENV NODE_PATH=./src

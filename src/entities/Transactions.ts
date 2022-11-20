@@ -9,11 +9,15 @@ export default class Transactions {
   @Column()
   value: number;
 
-  @Column({ default: new Date() })
+  @Column({ nullable: true })
   createdAt: Date;
 
-  @ManyToOne(() => Accounts, (accounts) => accounts.transactions)
+  @ManyToOne(() => Accounts, (accounts) => accounts.transactions, {
+    nullable: true,
+  })
   debitAccount: Accounts;
-  @ManyToOne(() => Accounts, (accounts) => accounts.transactions)
+  @ManyToOne(() => Accounts, (accounts) => accounts.transactions, {
+    nullable: true,
+  })
   creditAccount: Accounts;
 }
