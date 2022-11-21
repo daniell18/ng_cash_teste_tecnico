@@ -1,6 +1,6 @@
 # Teste tecnico-NG_CASH
 
-Uma API que simula uma carteira digital onde é possivel criar um usuario,efetuar login, realizar transações de cash-out e cash-in e consultar essas transações.
+Uma API que simula uma carteira digital onde é possível criar um usuário, efetuar login, realizar transações de cash-out e cash-in e consultar essas transações.
 
 ## Dev
 
@@ -25,17 +25,18 @@ Para rodar esse projeto, você vai precisar adicionar as seguintes variáveis de
 - `SECRET_KEY` senha para criação de token de autenticação;
 - `EXPIRES_IN` tempo de expiração do token gerado;
 
-# como rodar a aplicação
+# Como rodar a aplicação
 
-Deve se ter o docker instalado,preencher o .env e rodar comando
+Deve se ter o docker instalado, preencher o .env e rodar comando
 
 ```
+Na primeira vez para gerar a imagen e o container rodar com a flag --build
  docker-compose up --build
 ```
 
 # Como usar os Endpoints
 
-### A documentação tambem foi feita utilizando swagger pode ser acessada atravez do Endpoint /api-docs <br><br>
+## A documentação também foi feita utilizando swagger pode ser acessada através do Endpoint /api-docs <br><br>
 
 As rotas da aplicação podem ser dividas em três categorias básicas:
 
@@ -65,8 +66,8 @@ banco de dados.
 #### Descrição
 
 ```
-    - cria um novo usuario
-    - A senha deve ter pelo menos 1 letra maiscula,1 letra minuscula,1 numero , 1 caracter especial e no minimo 8 digitos
+   - cria um novo usuário
+    - A senha deve ter pelo menos 1 letra máscula, 1 letra minúscula, 1 numero , 1 caráter especial e no mínimo 8 dígitos
 ```
 
 _Envio:_
@@ -92,7 +93,7 @@ _Resposta:_
 #### Descrição
 
 ```
-    - login do usuario registrado
+    - login do usuário registrado
 ```
 
 _Envio:_
@@ -118,10 +119,10 @@ _Resposta:_
 
 ```
     - Necessário o envio do token
-    - Necessário passar o usuario logado na URL
+    - Necessário passar o usuário logado na URL
     - No body deve ser passado o valor que deseja adicionar
-    - Esse permite que seja adionado dinheiro a conta
-    - Ela foi craiada como extra para caso fosse dejado adicionar mais dinheiro a uma conta
+    - Esse permite que seja acionado dinheiro a conta
+    - Ela foi criada como extra para caso fosse desejado adicionar mais dinheiro a uma conta
 ```
 
 _Envio:_
@@ -147,8 +148,8 @@ _Resposta:_
 
 ```
     - Necessário o envio do token
-    - Necessário passar o usuario logado na URL
-    - Retrona o balanço atual do cliente
+    - Necessário passar o usuário logado na URL
+    - Retorna o balanço atual do cliente
 ```
 
 _Envio:_
@@ -169,9 +170,9 @@ _Resposta:_
 
 ```
     - Necessário o envio do token
-    - Necessário passar o usuario logado na URL
-    - No Body deve ser passado o usuario que ira receber e o valor desejado
-    - Cria um feedack e o vincula ao usuario solicitante
+    - Necessário passar o usuário logado na URL
+    - No Body deve ser passado o usuário que ira receber e o valor desejado
+    - Cria um feedback e o vincula ao usuário solicitante
 ```
 
 _Envio:_
@@ -203,11 +204,10 @@ _Resposta:_
 
 ```
     - Necessário o envio do token
-    - Necessário passar o usuario logado na URL
-    - Esta rotta recebe 2 parametros opcionais pra filtro:
+    - Necessário passar o usuário logado na URL
+    - Esta rota recebe 2 parâmetros opcionais para filtro:
         type: que recebe credit ou debit dependendo do que deseja filtrar
         order: que recebe ASC ou DESC dependendo da ordem que deseja filtrar por padrão recebe ASC
-    -
 ```
 
 _Envio:_
