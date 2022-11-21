@@ -35,6 +35,8 @@ Deve se ter o docker instalado,preencher o .env e rodar comando
 
 # Como usar os Endpoints
 
+### A documentação tambem foi feita utilizando swagger pode ser acessada atravez do Endpoint /api-docs <br><br>
+
 As rotas da aplicação podem ser dividas em três categorias básicas:
 
 - Rotas User
@@ -64,6 +66,7 @@ banco de dados.
 
 ```
     - cria um novo usuario
+    - A senha deve ter pelo menos 1 letra maiscula,1 letra minuscula,1 numero , 1 caracter especial e no minimo 8 digitos
 ```
 
 _Envio:_
